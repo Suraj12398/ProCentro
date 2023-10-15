@@ -1,0 +1,46 @@
+/* team-card.component.css */
+.team-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.team-header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.team-header h3 {
+  margin: 0;
+}
+
+.team-info {
+  padding: 10px;
+}
+
+.team-info p {
+  margin: 0;
+}
+
+.team-members {
+  padding: 10px;
+}
+
+.team-members h4 {
+  margin: 0 0 10px;
+}
+
+.team-members ul {
+  list-style: none;
+  padding: 0;
+}
+
+.team-members li {
+  margin: 5px 0;
+}

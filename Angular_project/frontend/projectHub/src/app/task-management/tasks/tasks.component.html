@@ -1,0 +1,33 @@
+<!-- task-management/tasks/tasks.component.html -->
+<div class="tasks-container">
+<div><app-add-task></app-add-task></div>
+
+
+    <div class="taskDiv">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+         
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.title }}</td>
+            <td>{{ task.dueDate | date }}</td>
+            
+            <td>
+              <button (click)="viewDetails(task)"  >View More</button>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="projects-container">
+    
+</div>

@@ -1,0 +1,15 @@
+<!-- project-details.component.html -->
+<div class="project-card">
+  <div class="project-details">
+    <h2>Project Details</h2>
+    <div *ngIf="project">
+      <p><strong>Name:</strong> {{ project.name }}</p>
+      <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
+      <p><strong>End Date:</strong> {{ project.endDate | date }}</p>
+      <p><strong>Project Manager:</strong> {{ project.projectManager.name }}</p>
+      <p><strong>Contact Manager:</strong> {{ project.projectManager.email }}</p>
+      <button (click)="deleteProject(project.id)">Delete Project</button>
+      <!-- Add more project details here -->
+    </div>
+  </div>
+</div>

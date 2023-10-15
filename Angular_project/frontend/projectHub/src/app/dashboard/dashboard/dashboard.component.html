@@ -1,0 +1,39 @@
+<div class="mainDiv">
+  <div class="cards">
+    <div class="card-single">
+      <div>
+        <h1 id="totalCustomers">{{tasks.length}}</h1>
+        <span><a [routerLink]="'/tasks'">Tasks</a></span>
+      </div>
+      <div>
+        <span class="las la-users"></span>
+      </div>
+    </div>
+    <div class="card-single">
+      <div>
+        <h1 id="totalProducts">{{projects.length}}</h1>
+        <span><a [routerLink]="'/projects'">Projects</a></span>
+      </div>
+      <div>
+        <span class="las la-clipboard-list"></span>
+      </div>
+    </div>
+
+    <div class="card-single">
+      <div>
+        <h1 id="totalIncome">
+          {{ currentQuote?.text }}
+        </h1>
+        <span class="author">- {{ currentQuote?.author.replace(', type.fit', '') }}</span>
+      </div>
+      <div>
+        <span class="lab la-google-wallet"></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="calenderDiv">
+    <app-calendar></app-calendar>
+  </div>
+  <!-- <app-calendar></app-calendar> -->
+</div>

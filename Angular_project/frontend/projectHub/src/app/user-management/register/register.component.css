@@ -1,0 +1,48 @@
+/* user-management/register/register.component.css */
+.register-container {
+    max-width: 300px;
+    margin: 0 auto;
+    
+    
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  .regiButton button{
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ccc;
+  }
+  .regiButton button:hover{
+    background-color: #007bff;
+  }
+  .buttonDiv{
+    display: flex;
+    justify-content: space-between;
+  }

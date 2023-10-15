@@ -1,0 +1,12 @@
+<!-- notifications/notifications/notifications.component.html -->
+<div class="notifications-container">
+    <h2>Notifications</h2>
+    
+    <div class="cards">
+      <div *ngFor="let notification of notifications.slice().reverse()" class="card red">
+          <p class="second-text">{{ notification }}</p>
+      </div>
+      
+  </div>
+  </div>
+  

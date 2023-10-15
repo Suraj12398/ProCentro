@@ -1,0 +1,83 @@
+/* project-management/projects/projects.component.css */
+.projects-container {
+    margin: 0 auto;
+    display: flex;
+    /* border: 2px solid black; */
+    gap: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+ 
+  .formDiv{
+    width: 60%;
+  }
+
+/* project-list.component.css */
+
+.project-list {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+

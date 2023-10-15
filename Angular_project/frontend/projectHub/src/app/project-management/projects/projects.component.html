@@ -1,0 +1,30 @@
+<!-- project-management/projects/projects.component.html -->
+<div class="projects-container">
+    <app-add-project class="formDiv"></app-add-project>
+    <div class="projectDiv">
+      
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let project of projects">
+                <td>{{ project.name }}</td>
+                <td>{{ project.startDate | date }}</td>
+                <td>{{ project.endDate | date }}</td>
+                <td>
+                  <button (click)="viewDetails(project)" >View More</button>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+</div>
+  

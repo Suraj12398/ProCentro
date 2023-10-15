@@ -1,0 +1,58 @@
+/* task-management/tasks/tasks.component.css */
+
+.tasks-container {
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  gap: 30px;
+}
+
+.tasks-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.tasks-container div{
+  width: 50%;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.projects-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

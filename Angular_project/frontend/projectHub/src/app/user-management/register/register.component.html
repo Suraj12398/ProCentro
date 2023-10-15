@@ -1,0 +1,45 @@
+<!-- user-management/register/register.component.html -->
+<div class="register-container">
+    <h2>Register</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input
+          type="string"
+          id="name"
+          formControlName="name"
+          placeholder="Enter your name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+      </div>
+      
+      <!-- You can add more fields here as needed (e.g., name, profile picture) -->
+      <div class="buttonDiv">
+        <div class="form-group">
+          <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+        </div>
+        <div class="regiButton" routerLinkActive="active">
+          <button routerLink="/login">Already register </button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+  

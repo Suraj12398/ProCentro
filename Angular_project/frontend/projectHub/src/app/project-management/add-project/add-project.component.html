@@ -1,0 +1,30 @@
+<div class="add-project-form">
+    <h2>Add Project</h2>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" formControlName="startDate" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" formControlName="endDate" required>
+      </div>
+      
+      
+      <button type="submit">Submit</button>
+    </form>
+    <p class="error-message" *ngIf="projectForm.invalid">Please fill out all the fields.</p>
+    <p class="error-message" *ngIf="projectError">{{ projectError }}</p>
+  </div>
+  

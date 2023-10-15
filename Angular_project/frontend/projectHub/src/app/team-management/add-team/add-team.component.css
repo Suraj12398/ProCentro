@@ -1,0 +1,65 @@
+/* Center the form on the page */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Style form groups */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Style labels */
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Style form controls (inputs and selects) */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Style the "Add Member" button */
+  .form-group button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the "Selected Members" list */
+  .form-group ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .form-group li {
+    margin-bottom: 5px;
+  }
+  
+  /* Style the submit button */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

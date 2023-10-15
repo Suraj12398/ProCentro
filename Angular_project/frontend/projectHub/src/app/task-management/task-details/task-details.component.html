@@ -1,0 +1,31 @@
+<div class="task-card">
+  <h2>Task Details</h2>
+  <div *ngIf="task">
+    <h3>{{ task.title }}</h3>
+    <p><strong>Id:</strong> {{ task.id }}</p>
+    <p><strong>Due Date:</strong> {{ task.dueDate | date}}</p>
+    <p><strong>Priority:</strong> {{ task.priority}}</p>
+    <!-- Priority Control -->
+    <p><strong></strong>
+      <select [(ngModel)]="task.priority">
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+      </select>
+      <button (click)="updatePriority()">Update Priority</button>
+    </p>
+    
+    <!-- Status Control -->
+    <p><strong>Priority:</strong> {{ task.status}}</p>
+    <p><strong></strong>
+      <select [(ngModel)]="task.status">
+        <option value="TODO">TODO</option>
+        <option value="INPROGRESS">In Progress</option>
+        <option value="COMPLETED">Completed</option>
+      </select>
+      <button (click)="updateStatus()">Update Status</button>
+    </p>
+
+    <button (click)="deleteTask()">Delete Task</button>
+  </div>
+</div>

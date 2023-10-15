@@ -1,0 +1,31 @@
+<!-- team-management/teams/teams.component.html -->
+<div class="teams-container">
+
+  <div>
+    <app-add-team></app-add-team>
+  </div>
+
+  <div class="teamDiv">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Project</th>
+
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <td>{{ team.name }}</td>
+          <td>{{ team.teamProject.name }}</td>
+
+          <td>
+            <button (click)="viewDetails(team)">View More</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

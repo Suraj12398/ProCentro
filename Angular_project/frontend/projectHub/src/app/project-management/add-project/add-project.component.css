@@ -1,0 +1,60 @@
+.add-project-form {
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .add-project-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-project-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-project-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-project-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .add-project-form input[type="text"],
+  .add-project-form input[type="date"],
+  .add-project-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .add-project-form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100px;
+  }
+  
+  .add-project-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Adjust spacing and styling as needed */
+  

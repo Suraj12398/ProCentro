@@ -1,0 +1,19 @@
+<!-- team-card.component.html -->
+<div class="team-card">
+  <div class="team-header">
+    <h3>Team Details</h3>
+  </div>
+  <div class="team-info">
+    <p><strong>Team ID:</strong> {{ team.id }}</p>
+    <p><strong>Team Name:</strong> {{ team.name }}</p>
+    <p><strong>Team Project:</strong> {{ team.teamProject.name }}</p>
+    <p><strong>Project Manager:</strong> {{ team.teamProject.projectManager.name }}</p>
+  </div>
+  <div class="team-members">
+    <h4>Team Members</h4>
+    <ul>
+      <li *ngFor="let member of team.members">{{ member.name }}</li>
+    </ul>
+    
+  </div>
+</div>
