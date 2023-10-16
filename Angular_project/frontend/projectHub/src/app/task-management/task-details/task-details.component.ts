@@ -28,6 +28,7 @@ export class TaskDetailsComponent implements OnInit {
       this.taskService.getTaskDetails(taskId).subscribe(
         (taskData) => {
           this.task = taskData;
+          
         },
         (error) => {
           console.error('Error fetching task details:', error);
@@ -42,6 +43,7 @@ export class TaskDetailsComponent implements OnInit {
       (response) => {
         // Update the task's priority in the UI with the response value
         this.task.priority = response.priority;
+        alert("priority changed to : "+this.task.priority)
         // Provide a user-friendly notification here (e.g., with a notification library)
       },
       (error) => {
@@ -58,6 +60,7 @@ export class TaskDetailsComponent implements OnInit {
       (response) => {
         // Update the task's status in the UI with the response value
         this.task.status = response.status;
+        alert("Status changed to : "+this.task.status)
         // Provide a user-friendly notification here (e.g., with a notification library)
       },
       (error) => {
@@ -73,6 +76,7 @@ export class TaskDetailsComponent implements OnInit {
     this.taskService.deleteTask(this.task.id).subscribe(
       () => {
         // Provide a user-friendly success notification here
+        alert("Task Deleted Successfully")
         this.router.navigate(['/tasks']);
       },
       (error) => {

@@ -50,7 +50,7 @@ export class RegisterComponent {
         if(error.error.text=="You have Already Registered"){
           this.router.navigate(['/login'])
         }
-        
+        this.router.navigate(['/login'])
         
       }
     );

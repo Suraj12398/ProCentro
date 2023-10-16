@@ -25,6 +25,7 @@ public class TeamService {
 	  public Team createTeam(Team team) {
 		  team.getMembers().add(team.getTeamProject().getProjectManager());
 		  team.getMembers().stream().map(a->a.getNotifications().add("You have been Added in the Team : " +team.getName()));
+//		  userRepository.saveAllAndFlush(team.getMembers());
 	        return teamRepository.save(team);
 	        
 	    }
@@ -42,7 +43,7 @@ public class TeamService {
 	        
 	        newMember.getNotifications().add("You have been added in : "+ team.getName());
 	        
-	        
+	        userRepository.save(newMember);
 	        return teamRepository.save(team);
 	    }
 	  
@@ -60,7 +61,8 @@ public class TeamService {
 		  
 		  
 		  List<Team> teamList=teamRepository.findByMembersId(id);
-		  
+		  teamList.addAll(teamRepository.findAll().stream().filter(a->a.getTeamProject().getProjectManager().getId()==id).toList());
+//		  teamList.addAll(teamRepository.findProjectsByMemberId(id));
 		  
 		  
 		return teamList;

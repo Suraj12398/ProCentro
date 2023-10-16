@@ -11,6 +11,7 @@ import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 import com.projectHub.model.Task;
 import com.projectHub.repository.TaskRepository;
+import com.projectHub.repository.UsersRepository;
 
 @Service
 public class TaskService {
@@ -18,9 +19,12 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	
+	@Autowired
+	private UsersRepository usersRepository;
 	
 	  public Task assignTaskToTeamMember(Task task) {
 		    task.getAssigned().getNotifications().add("You have Assinged Task : "+task.getTitle());
+//		    usersRepository.save(task.getAssigned());
 	        return taskRepository.save(task);
 	        
 	    }
