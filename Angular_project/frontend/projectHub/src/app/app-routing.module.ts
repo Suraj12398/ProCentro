@@ -10,7 +10,7 @@ import { TeamsComponent } from './team-management/teams/teams.component';
 import { TeamDetailsComponent } from './team-management/team-details/team-details.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications/notifications.component';
-import { AnalyticsComponent } from './analytics/analytics/analytics.component';
+
 import { AddProjectComponent } from './project-management/add-project/add-project.component';
 import { RegisterComponent } from './user-management/register/register.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -59,10 +59,7 @@ const routes: Routes = [
     path: 'notifications',
     component: NotificationsComponent,
   },
-  {
-    path: 'analytics',
-    component: AnalyticsComponent,
-  },
+ 
   {
     path: 'addProject',
     component: AddProjectComponent,
@@ -77,8 +74,9 @@ const routes: Routes = [
   {
     path:'addTeam',
     component:AddTeamComponent,
-  }
-  
+  },
+  {path:'',redirectTo:'login', pathMatch:'full'},
+  {path:'**',redirectTo:'login'}
 ];
 
 @NgModule({

@@ -48,6 +48,7 @@ export class ProjectDetailsComponent implements OnInit {
         // Handle the response, e.g., display a success message
         this.router.navigate(["/projects"])
         console.log('Project deleted successfully');
+        alert('Project deleted successfully');
       },
       (error) => {
         // Handle any errors, e.g., display an error message

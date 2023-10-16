@@ -61,9 +61,13 @@ public class TeamService {
 		  
 		  List<Team> teamList=teamRepository.findByMembersId(id);
 		  
+		  
+		  
 		return teamList;
 		  
 	  }
+	  
+	  
 	  
 	  
 }

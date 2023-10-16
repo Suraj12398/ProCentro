@@ -74,6 +74,7 @@ console.log(this.team)
     this.http.post('http://localhost:8888/createTeam', this.team).subscribe(
       (response) => {
         console.log('Team added successfully:', response);
+        alert('Team added successfully');
         // Optionally, you can navigate to a different route or perform other actions after adding the team.
       },
       (error) => {

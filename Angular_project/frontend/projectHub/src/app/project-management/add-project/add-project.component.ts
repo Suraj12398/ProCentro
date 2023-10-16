@@ -61,7 +61,9 @@ if (user && user.id) {
     this.http.post(`http://localhost:8888/createProject`, projectData).subscribe(
       (response) => {
         // Handle successful project addition (e.g., show a success message)
+        
         console.log('Project added successfully:', response);
+        alert("Project Added Successfully");
       },
       (error) => {
         // Handle project addition error (e.g., display an error message)

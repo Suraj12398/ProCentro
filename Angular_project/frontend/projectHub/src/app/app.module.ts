@@ -20,9 +20,9 @@ import { TeamsComponent } from './team-management/teams/teams.component';
 import { TeamDetailsComponent } from './team-management/team-details/team-details.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications/notifications.component';
-import { AnalyticsComponent } from './analytics/analytics/analytics.component';
-import { HammerModule } from '@angular/platform-browser';
-import { IgxCalendarModule, IgxSnackbarModule } from 'igniteui-angular';
+
+
+
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -44,7 +44,7 @@ import { AddTeamComponent } from './team-management/add-team/add-team.component'
     TeamDetailsComponent,
     DashboardComponent,
     NotificationsComponent,
-    AnalyticsComponent,
+  
     AddProjectComponent,
     CalendarComponent,
     AddTaskComponent,
@@ -60,9 +60,6 @@ import { AddTeamComponent } from './team-management/add-team/add-team.component'
     BrowserAnimationsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HammerModule,
-    IgxCalendarModule,
-    IgxSnackbarModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

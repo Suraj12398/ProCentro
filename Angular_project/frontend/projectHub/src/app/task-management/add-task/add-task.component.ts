@@ -57,6 +57,7 @@ export class AddTaskComponent {
       this.http.post<any>('http://localhost:8888/taskAssign', this.task).subscribe(
         (response) => {
           console.log('Task added successfully:', response);
+          alert('Task added successfully');
         },
         (error) => {
           console.error('Error adding task:', error);

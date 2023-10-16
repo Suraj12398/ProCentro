@@ -1,5 +1,6 @@
 package com.projectHub.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.projectHub.model.Project;
 import com.projectHub.model.Task;
+import com.projectHub.model.Users;
 import com.projectHub.repository.ProjectRepository;
 import com.projectHub.repository.TaskRepository;
 import com.projectHub.repository.TeamRepository;
+import com.projectHub.repository.UsersRepository;
 
 @Service
 public class ProjectService {
@@ -24,6 +27,8 @@ public class ProjectService {
 	
 	@Autowired
 	private TeamRepository teamRepository;
+	
+	
 	
 	  public Project createProject(Project project) {
 	        
@@ -41,11 +46,15 @@ public class ProjectService {
 	
 	public List<Project>userRelatedProject(Long id) {
 		
-//		List<Project> projectList=new ArrayList<>();
+		List<Project> projectList=new ArrayList<>();
+
 		
-//		teamRepository.findByMembersId(id).stream().map(a->projectList.add(a.getTeamProject()));
+		projectList.addAll(teamRepository.findProjectsByMemberId(id));
 		
-		return teamRepository.findProjectsByMemberId(id);
+		projectList.addAll(projectRepository.findAll().stream().filter(a->a.getProjectManager().getId()==id).toList()) ;
+		
+		
+		return projectList.stream().distinct().toList();
 		
 		
 		
