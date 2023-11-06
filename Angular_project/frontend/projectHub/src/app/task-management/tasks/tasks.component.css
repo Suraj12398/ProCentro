@@ -6,6 +6,7 @@
   margin: auto;
   justify-content: center;
   gap: 30px;
+  /* margin-left: 50px; */
 }
 
 .tasks-container h2 {
@@ -56,3 +57,11 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+@media only screen and (max-width: 500px) {
+  .tasks-container{
+    flex-direction: column;
+  }
+  table{
+    width:90vw;
+  }
+  }

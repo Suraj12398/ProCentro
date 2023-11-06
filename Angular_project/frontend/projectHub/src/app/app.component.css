@@ -50,8 +50,17 @@
 }
 
 .sidebar-menu a:hover{
+  margin: 10px;
+  padding: 10px;
+  transform: scale(1.2, 1.2);
+  color: rgb(128, 91, 159);
+}
+.sidebar-menu svg:hover{
   background-color: #979797;
-  
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transform: scale(1.2, 1.2);
 }
 
 .sidebar-menu a.active {
@@ -139,7 +148,7 @@
   padding: 2rem 1.5rem;
   background: #f1f5f9;
   min-height: calc(100vh - 90px);
-
+width: 100vw;
 }
 .header{
   display: flex;
@@ -155,4 +164,11 @@
 }
 .hidden-sidebar {
   display: none;
+}
+
+@media only screen and (max-width: 400px) {
+  .wrapper{
+    overflow-x: hidden;
+  }
+
 }

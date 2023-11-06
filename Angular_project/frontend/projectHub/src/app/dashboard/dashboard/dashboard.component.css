@@ -8,6 +8,7 @@
   padding: 2rem 1.5rem;
   background: #f1f5f9;
   min-height: calc(100vh - 90px);
+  width: 100vw;
 }
 
 .cards {
@@ -70,4 +71,36 @@ height: 400px;
 a{
   text-decoration: none;
   color: black;
+}
+
+@media only screen and (max-width: 500px) {
+.cards{
+  width: 70vw;
+  grid-template-columns: repeat(1, 1fr);
+
+  
+}
+.card-single:last-child{
+  width: 70vw;
+}
+
+.main{
+  width: 100vw;
+}
+}
+
+
+@media only screen and (max-width: 1000px) and (min-width: 700px){
+  
+  .cards{
+    grid-template-columns: repeat(2, 1fr);
+  
+  }
+  .card-single:last-child {
+   width: 300px;
+  }
+  .main{
+    width: 70vw;
+  }
+ 
 }

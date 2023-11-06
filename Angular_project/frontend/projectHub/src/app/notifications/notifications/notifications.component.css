@@ -9,7 +9,9 @@
   }
   
   
-  
+  .notifications-container{
+    width: 90vw;
+  }
   .cards .card {
     display: flex;
     
@@ -31,10 +33,13 @@
   }
   
   .cards .card:hover {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.03, 1.03);
   }
   
   .cards:hover > .card:not(:hover) {
     filter: blur(10px);
     transform: scale(0.9, 0.9);
+  }
+  h2{
+    font-size: 2.5em;
   }

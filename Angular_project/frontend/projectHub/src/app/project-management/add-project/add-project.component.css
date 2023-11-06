@@ -57,4 +57,9 @@
   }
   
   /* Adjust spacing and styling as needed */
-  
+  @media only screen and (max-width: 500px) {
+    .add-project-form{
+      width: 90vw;
+    }
+
+  }

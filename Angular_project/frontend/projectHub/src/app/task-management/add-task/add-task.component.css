@@ -1,11 +1,12 @@
 /* AddTask Form Styles */
 form {
-    /* width: 300px; */
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  /* width: 90vw; */
   }
   
   .form-group {
@@ -17,8 +18,8 @@ form {
     font-weight: bold;
   }
   
-  input[type="text"],
-  input[type="date"] {
+  form input[type="text"],
+  form input[type="date"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -46,4 +47,8 @@ form {
   button:hover {
     background-color: #0056b3;
   }
-  
+  @media only screen and (max-width: 500px) {
+    form{
+      flex-direction: column;width: 90vw;
+    }
+  }

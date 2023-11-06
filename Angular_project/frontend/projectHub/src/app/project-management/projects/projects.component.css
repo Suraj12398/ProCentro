@@ -3,9 +3,10 @@
     margin: 0 auto;
     display: flex;
     /* border: 2px solid black; */
+  width: 90vw;
     gap: 20px;
   }
-  
+ 
   ul {
     list-style-type: none;
     padding: 0;
@@ -81,3 +82,9 @@ button:hover {
   background-color: #0056b3;
 }
 
+
+@media only screen and (max-width: 500px) {
+.projects-container{
+  flex-direction: column;
+}
+}
