@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projectHub.Exceptions.ProjectException;
 import com.projectHub.model.Project;
 import com.projectHub.model.Task;
 import com.projectHub.model.Users;
@@ -30,13 +31,13 @@ public class ProjectService {
 	
 	
 	
-	  public Project createProject(Project project) {
+	  public Project createProject(Project project) throws ProjectException{
 	        
 	        return projectRepository.save(project);
 	    }
 
 	  
-	  public Optional<Project> getProjectDetails(Long projectId) {
+	  public Optional<Project> getProjectDetails(Long projectId) throws ProjectException {
 		  
 		  return projectRepository.findById(projectId);
 		   
@@ -44,7 +45,7 @@ public class ProjectService {
 	
 	
 	
-	public List<Project>userRelatedProject(Long id) {
+	public List<Project> userRelatedProject(Long id) throws ProjectException {
 		
 		List<Project> projectList=new ArrayList<>();
 
@@ -57,11 +58,10 @@ public class ProjectService {
 		return projectList.stream().distinct().toList();
 		
 		
-		
 	}
 	
 	
-	public String deleteProject(Long id) {
+	public String deleteProject(Long id) throws ProjectException {
 		
 		List<Task> associatedTasks = taskRepository.findByProjectId(id);
         taskRepository.deleteAll(associatedTasks);

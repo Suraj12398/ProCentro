@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projectHub.Exceptions.TaskNotFoundException;
+import com.projectHub.Exceptions.TaskException;
 import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 import com.projectHub.model.Task;
@@ -33,7 +33,7 @@ public class TaskService {
 	  
 	  public Task changeTaskPriority(Long taskId, Priority newPriority) {
 	        Task task = taskRepository.findById(taskId)
-	                .orElseThrow(() -> new TaskNotFoundException("Task not found with ID: " + taskId));
+	                .orElseThrow(() -> new TaskException("Task not found with ID: " + taskId));
 
 	        // Update the task priority
 	        task.setPriority(newPriority);

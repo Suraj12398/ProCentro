@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projectHub.Exceptions.UserException;
 import com.projectHub.model.Users;
 import com.projectHub.service.UserService;
 
@@ -25,7 +26,7 @@ public class UsersController {
 	
 	
 	@GetMapping("/login")
-	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password) {
+	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password) throws UserException {
 		
 		us.loginUser(email, password);
 		us.findUserByEmail(email);
@@ -36,28 +37,38 @@ public class UsersController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody Users user) {
+	public ResponseEntity<String> registerUser(@RequestBody Users user) throws UserException {
 		if(!us.findUserByEmail(user.getEmail()).isPresent()) {
 			us.registerUser(user);
 			return new ResponseEntity<>("user Register Successfully",HttpStatus.CREATED );
 			
 		}else {
-			return new ResponseEntity<>("You have Already Registered",HttpStatus.CREATED );
+			throw new UserException("You have Already Registered");
+			
 		}
 		
 	}
 	
 	
 	@GetMapping("/userWithEmail")
-	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email) {
+	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email) throws UserException {
 		
-		return new ResponseEntity<>(us.findUserByEmail(email),HttpStatus.ACCEPTED );
+		if(us.findUserByEmail(email).isPresent()) {
+			
+			return new ResponseEntity<>(us.findUserByEmail(email),HttpStatus.ACCEPTED );
+		}else {
+			throw new UserException("No user found with given Username");
+		}
+		
 		
 	}
 	
 	@GetMapping("/allUsers")
-	public ResponseEntity<List<Users>> getAllUsers(){
+	public ResponseEntity<List<Users>> getAllUsers()throws UserException{
 		
+		if(us.findAll().isEmpty()) {
+			throw new UserException("No users found");
+		}
 		return new ResponseEntity<>(us.findAll(),HttpStatus.ACCEPTED );
 	}
 	

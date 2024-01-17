@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projectHub.Exceptions.InvalidCredentialsException;
-import com.projectHub.Exceptions.UserNotFoundException;
-import com.projectHub.Exceptions.UserRegistrationException;
-import com.projectHub.model.Team;
+import com.projectHub.Exceptions.UserException;
 import com.projectHub.model.Users;
 import com.projectHub.repository.UsersRepository;
 
@@ -20,11 +18,11 @@ public class UserService {
 	private UsersRepository userRepository;
 	
 	
-	  public Users registerUser(Users user) {
+	  public Users registerUser(Users user) throws UserException{
 	        // Check if the email is already registered
 	        Optional<Users> existingUser = userRepository.findByEmail(user.getEmail());
 	        if (existingUser.isPresent()) {
-	            throw new UserRegistrationException("Email is already registered.");
+	            throw new UserException("Email is already registered.");
 	        }
 
 	        String notify="Welcome : "+ user.getName();
@@ -34,10 +32,10 @@ public class UserService {
 	    }
 	  
 	  
-	  public Users loginUser(String email, String password) {
+	  public Users loginUser(String email, String password) throws UserException {
 	        // Find the user by email
 	        Users user = userRepository.findByEmail(email)
-	                .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+	                .orElseThrow(() -> new UserException("User not found with email: " + email));
 
 	        // Verify the password
 	        if (!password.equals(user.getPassword())) {
