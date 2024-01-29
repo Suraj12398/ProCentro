@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.projectHub.Exceptions.InvalidCredentialsException;
 import com.projectHub.Exceptions.UserException;
@@ -12,13 +13,13 @@ import com.projectHub.model.Users;
 import com.projectHub.repository.UsersRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceInterface{
 
 	@Autowired
 	private UsersRepository userRepository;
 	
-	
-	  public Users registerUser(Users user) throws UserException{
+	@Override
+	  public Users registerUser(Users user) throws UserException, Exception, NoHandlerFoundException{
 	        // Check if the email is already registered
 	        Optional<Users> existingUser = userRepository.findByEmail(user.getEmail());
 	        if (existingUser.isPresent()) {
@@ -31,8 +32,8 @@ public class UserService {
 	        return userRepository.save(user);
 	    }
 	  
-	  
-	  public Users loginUser(String email, String password) throws UserException {
+	@Override
+	  public Users loginUser(String email, String password) throws UserException ,Exception, NoHandlerFoundException {
 	        // Find the user by email
 	        Users user = userRepository.findByEmail(email)
 	                .orElseThrow(() -> new UserException("User not found with email: " + email));
@@ -44,17 +45,23 @@ public class UserService {
 
 	        return user;
 	    }
-	  
-	  public Optional<Users> findUserByEmail(String email) {
+	@Override
+	  public Optional<Users> findUserByEmail(String email) throws Exception, NoHandlerFoundException, UserException {
 		  
-		 return  userRepository.findByEmail(email);
+		  Optional<Users> user=userRepository.findByEmail(email);
+		  
+		  if(!user.isEmpty()) {
+			  throw new UserException("No user found with email");
+		  }
+		  
+		 return  user;
 		  
 	        
 	  }
 	  
 	  
-	  
-	 public Optional<Users> findUserById(Long id) {
+	@Override
+	 public Optional<Users> findUserById(Long id) throws Exception, NoHandlerFoundException, InvalidCredentialsException{
 		 
 		 
 		 Optional<Users> existingUser = userRepository.findById(id);
@@ -66,9 +73,12 @@ public class UserService {
 	        }  
 	 }
 	
-	 public List<Users> findAll(){
+	@Override
+	 public List<Users> findAll()throws Exception, NoHandlerFoundException{
 		 
-		return userRepository.findAll();
+		 List<Users> userList=userRepository.findAll();
+		 if(userList.isEmpty()) throw new UserException("No User Found");
+		return userList;
 		 
 	 }
 

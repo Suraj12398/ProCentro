@@ -12,7 +12,7 @@ import com.projectHub.repository.TeamRepository;
 import com.projectHub.repository.UsersRepository;
 
 @Service
-public class TeamService {
+public class TeamService implements TeamServiceInterface{
 
 	@Autowired
 	private UsersRepository userRepository;
@@ -21,7 +21,7 @@ public class TeamService {
 	private TeamRepository teamRepository;
 	
 	
-	
+	@Override
 	  public Team createTeam(Team team) {
 		  team.getMembers().add(team.getTeamProject().getProjectManager());
 		  team.getMembers().stream().map(a->a.getNotifications().add("You have been Added in the Team : " +team.getName()));
@@ -31,8 +31,8 @@ public class TeamService {
 	    }
 	  
 	  
-	 
-	  
+	
+	@Override
 	  public Team addMemberToTeam(Long teamId, Long memberId) {
 		  
 	        Team team = teamRepository.findById(teamId).get();
@@ -49,13 +49,13 @@ public class TeamService {
 	  
 	  
 	  
-	  
+	@Override
 	  public Optional<Team> teamDetails(Long id) {
 		  
 		  return teamRepository.findById(id);
 	  }
 	  
-	  
+	@Override
 	  public List<Team> getAllTeamsOfManager(Long id) {
 		  
 		  

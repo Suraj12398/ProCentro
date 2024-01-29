@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.projectHub.Exceptions.UserException;
 import com.projectHub.model.Users;
@@ -26,7 +27,7 @@ public class UsersController {
 	
 	
 	@GetMapping("/login")
-	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password) throws UserException {
+	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password) throws NoHandlerFoundException, Exception {
 		
 		us.loginUser(email, password);
 		us.findUserByEmail(email);
@@ -37,7 +38,7 @@ public class UsersController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody Users user) throws UserException {
+	public ResponseEntity<String> registerUser(@RequestBody Users user) throws NoHandlerFoundException, Exception {
 		if(!us.findUserByEmail(user.getEmail()).isPresent()) {
 			us.registerUser(user);
 			return new ResponseEntity<>("user Register Successfully",HttpStatus.CREATED );
@@ -51,7 +52,7 @@ public class UsersController {
 	
 	
 	@GetMapping("/userWithEmail")
-	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email) throws UserException {
+	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email) throws NoHandlerFoundException, Exception {
 		
 		if(us.findUserByEmail(email).isPresent()) {
 			
@@ -64,7 +65,7 @@ public class UsersController {
 	}
 	
 	@GetMapping("/allUsers")
-	public ResponseEntity<List<Users>> getAllUsers()throws UserException{
+	public ResponseEntity<List<Users>> getAllUsers()throws NoHandlerFoundException, Exception{
 		
 		if(us.findAll().isEmpty()) {
 			throw new UserException("No users found");

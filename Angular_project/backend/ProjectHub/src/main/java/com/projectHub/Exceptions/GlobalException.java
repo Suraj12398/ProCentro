@@ -46,7 +46,7 @@ public class GlobalException {
 	}
 	
 	@ExceptionHandler(Exception.class)
-    public ResponseEntity<MyErrorDetails> genralExceptionHandler(Exception user, WebRequest req){
+    public ResponseEntity<MyErrorDetails> generalExceptionHandler(Exception user, WebRequest req){
 
         MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(),user.getMessage(),req.getDescription(false));
 

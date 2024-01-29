@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.projectHub.Exceptions.ProjectException;
 import com.projectHub.model.Project;
 import com.projectHub.service.ProjectService;
 import com.projectHub.service.TeamService;
@@ -33,7 +35,7 @@ public class ProjectController {
 	
 	
 	@PostMapping("/createProject")
-	public ResponseEntity<Project> createProject(@RequestBody Project project){
+	public ResponseEntity<Project> createProject(@RequestBody Project project) throws Exception{
 		
 		return new ResponseEntity<>(ps.createProject(project), HttpStatus.CREATED);
 		
@@ -49,7 +51,7 @@ public class ProjectController {
 	
 	
 	@GetMapping("/projects/user")
-	public ResponseEntity<List<Project>> getAllProjects(@RequestParam Long id){
+	public ResponseEntity<List<Project>> getAllProjects(@RequestParam Long id) throws NoHandlerFoundException, ProjectException, Exception{
 		
 		return new ResponseEntity<>(ps.userRelatedProject(id),HttpStatus.ACCEPTED);
 		
@@ -58,7 +60,7 @@ public class ProjectController {
 
 	
 	@DeleteMapping("/deleteProject")
-	public ResponseEntity<String> deleteProject(@RequestParam Long projectId){
+	public ResponseEntity<String> deleteProject(@RequestParam Long projectId) throws NoHandlerFoundException, ProjectException, Exception{
 		
 		
 		

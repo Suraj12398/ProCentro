@@ -5,33 +5,34 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.projectHub.Exceptions.TaskException;
 import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 import com.projectHub.model.Task;
 import com.projectHub.repository.TaskRepository;
-import com.projectHub.repository.UsersRepository;
 
 @Service
-public class TaskService {
+public class TaskService implements TaskServiceInterface{
 
 	@Autowired
 	private TaskRepository taskRepository;
 	
-	@Autowired
-	private UsersRepository usersRepository;
-	
-	  public Task assignTaskToTeamMember(Task task) {
+
+	@Override
+	  public Task assignTaskToTeamMember(Task task) throws Exception{
 		    task.getAssigned().getNotifications().add("You have Assinged Task : "+task.getTitle());
 //		    usersRepository.save(task.getAssigned());
+		    
+		    
 	        return taskRepository.save(task);
 	        
 	    }
 	  
 	  
-	  
-	  public Task changeTaskPriority(Long taskId, Priority newPriority) {
+	@Override
+	  public Task changeTaskPriority(Long taskId, Priority newPriority) throws TaskException, Exception, NoHandlerFoundException{
 	        Task task = taskRepository.findById(taskId)
 	                .orElseThrow(() -> new TaskException("Task not found with ID: " + taskId));
 
@@ -41,8 +42,8 @@ public class TaskService {
 	        return taskRepository.save(task);
 	    }
 	  
-	  
-	  public Task changeTaskStatus(Long taskId, Status newStatus) {
+	@Override
+	  public Task changeTaskStatus(Long taskId, Status newStatus) throws TaskException, Exception, NoHandlerFoundException{
 		  
 		  
 			Task task = taskRepository.findById(taskId).get();	  
@@ -52,21 +53,25 @@ public class TaskService {
 	    }
 	  
 	  
-	  
-	  public Optional<Task> getTaskDetails(Long taskId) {
-		    return taskRepository.findById(taskId);
+	@Override
+	  public Task getTaskDetails(Long taskId) throws TaskException, Exception, NoHandlerFoundException{
+		  Task task=taskRepository.findById(taskId).orElseThrow(()->new TaskException("No task found with giver id"));
+		  
+		    return task;
 		    
 		}
 	  
 	  
-
-	  public List<Task> getAllTask(Long userId) {
+	@Override
+	  public List<Task> getAllTask(Long userId) throws TaskException, Exception, NoHandlerFoundException{
 		     
-		     return taskRepository.findAll().stream().filter(a->a.getAssigned().getId()==userId).toList();
+		  List<Task> taskList=taskRepository.findAll().stream().filter(a->a.getAssigned().getId()==userId).toList();
+		  if(taskList.isEmpty()) throw new TaskException("No task found with user");
+		     return taskList;
 		}
 	 
-	  
-	  public String deleteTask(Long taskId) {
+	@Override
+	  public String deleteTask(Long taskId) throws TaskException, Exception, NoHandlerFoundException{
 		  
 		  if(taskRepository.findById(taskId).isPresent()) {
 			  Task task = taskRepository.findById(taskId).get();
@@ -74,15 +79,17 @@ public class TaskService {
 			    return "task deleted Successfully";
 			    
 		  }else {
-			  return "task id cannot found";
+			  throw new TaskException("Task Not Available");
 		  }
 		  
 	
 		  
 }
-	 public Task findTask(Long taskId) {
-			Task task = taskRepository.findById(taskId).get();
-			return task;
+	@Override
+	 public Task findTask(Long taskId) throws TaskException, Exception, NoHandlerFoundException{
+			Optional<Task> task = taskRepository.findById(taskId);
+			if(task.isEmpty()) throw new TaskException("No task found with giver id");
+			return (Task) task.get();
 		}  
 	 
 

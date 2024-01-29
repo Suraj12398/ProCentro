@@ -2,11 +2,9 @@ package com.projectHub.model;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

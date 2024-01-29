@@ -7,18 +7,17 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.projectHub.Exceptions.ProjectException;
 import com.projectHub.model.Project;
 import com.projectHub.model.Task;
-import com.projectHub.model.Users;
 import com.projectHub.repository.ProjectRepository;
 import com.projectHub.repository.TaskRepository;
 import com.projectHub.repository.TeamRepository;
-import com.projectHub.repository.UsersRepository;
 
 @Service
-public class ProjectService {
+public class ProjectService implements ProjectServiceInterface{
 
 	@Autowired
 	private ProjectRepository projectRepository;
@@ -30,22 +29,25 @@ public class ProjectService {
 	private TeamRepository teamRepository;
 	
 	
-	
-	  public Project createProject(Project project) throws ProjectException{
+	 @Override 
+	  public Project createProject(Project project) throws Exception{
 	        
 	        return projectRepository.save(project);
 	    }
 
-	  
+	 @Override
 	  public Optional<Project> getProjectDetails(Long projectId) throws ProjectException {
 		  
-		  return projectRepository.findById(projectId);
+		  Optional<Project> project=projectRepository.findById(projectId);
+		  if(! project.isPresent()) throw new ProjectException("No project found with given Id");
+		  
+		  return project;
 		   
 		}
 	
 	
-	
-	public List<Project> userRelatedProject(Long id) throws ProjectException {
+	  @Override
+	public List<Project> userRelatedProject(Long id) throws Exception, NoHandlerFoundException, ProjectException {
 		
 		List<Project> projectList=new ArrayList<>();
 
@@ -53,15 +55,17 @@ public class ProjectService {
 		projectList.addAll(teamRepository.findProjectsByMemberId(id));
 		
 		projectList.addAll(projectRepository.findAll().stream().filter(a->a.getProjectManager().getId()==id).toList()) ;
-		
+		if(projectList.isEmpty()) {
+			throw new ProjectException("No project Found with related to user");
+		}
 		
 		return projectList.stream().distinct().toList();
 		
 		
 	}
 	
-	
-	public String deleteProject(Long id) throws ProjectException {
+	  @Override
+	public String deleteProject(Long id) throws  Exception, NoHandlerFoundException, ProjectException {
 		
 		List<Task> associatedTasks = taskRepository.findByProjectId(id);
         taskRepository.deleteAll(associatedTasks);
@@ -70,7 +74,7 @@ public class ProjectService {
 			projectRepository.deleteById(id);
 			return "Project Deleted Successfully"; 
 		}else {
-			return "Project Not Found";
+			throw new ProjectException("Project Not Found");
 		}
 		
 		
