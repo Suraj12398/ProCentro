@@ -21,24 +21,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Team {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotBlank(message = "Must not be null value")
+	private String name;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank(message = "Must not be null value")
-    private String name;
+	@OneToMany
+	@JoinTable(name = "team_members", 
+	joinColumns = @JoinColumn(name = "team_id"), 
+	inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<Users> members;
 
-    @OneToMany
-    @JoinTable(
-	        name = "team_members",
-	        joinColumns = @JoinColumn(name = "team_id"),
-	        inverseJoinColumns = @JoinColumn(name = "user_id")
-	    )
-    private List<Users> members;
+	@ManyToOne
+	private Project teamProject;
 
-   
-    @ManyToOne
-    private Project teamProject;
-
-	
 }

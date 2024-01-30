@@ -1,7 +1,5 @@
 package com.projectHub.model;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,25 +18,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "users")
 public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank(message = "Name is required")
-    private String name;
-    
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email should be valid")
-    private String email;
-    
-    @NotBlank(message = "password is required")
-   private String password;
+	@NotBlank(message = "Name is required")
+	private String name;
 
-    
-    private List<String> notifications = new ArrayList<>();
-    
-    
-    
-    
+	@NotBlank(message = "Email is required")
+	@Email(message = "Email should be valid")
+	private String email;
+
+	@NotBlank(message = "password is required")
+	private String password;
+	private List<String> notifications = new ArrayList<>();
+
 }
-

@@ -1,6 +1,5 @@
 package com.projectHub.controller;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,67 +13,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.projectHub.Exceptions.UserException;
 import com.projectHub.model.Users;
-import com.projectHub.service.UserService;
-
+import com.projectHub.service.UserServiceInterface;
 
 @RestController
 public class UsersController {
 
 	@Autowired
-	UserService us;
-	
-	
+	UserServiceInterface usersService;
+
 	@GetMapping("/login")
-	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password) throws NoHandlerFoundException, Exception {
-		
-		us.loginUser(email, password);
-		us.findUserByEmail(email);
-		
-		return new ResponseEntity<>(us.findUserByEmail(email).get(), HttpStatus.OK );
-		
+	public ResponseEntity<Users> userLogin(@RequestParam String email, @RequestParam String password)
+			throws NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(usersService.loginUser(email, password), HttpStatus.OK);
+
 	}
-	
-	
+
 	@PostMapping("/register")
 	public ResponseEntity<String> registerUser(@RequestBody Users user) throws NoHandlerFoundException, Exception {
-		if(!us.findUserByEmail(user.getEmail()).isPresent()) {
-			us.registerUser(user);
-			return new ResponseEntity<>("user Register Successfully",HttpStatus.CREATED );
-			
-		}else {
-			throw new UserException("You have Already Registered");
-			
-		}
-		
+		usersService.registerUser(user);
+
+		return new ResponseEntity<>("user Register Successfully", HttpStatus.CREATED);
 	}
-	
-	
+
 	@GetMapping("/userWithEmail")
-	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email) throws NoHandlerFoundException, Exception {
-		
-		if(us.findUserByEmail(email).isPresent()) {
-			
-			return new ResponseEntity<>(us.findUserByEmail(email),HttpStatus.ACCEPTED );
-		}else {
-			throw new UserException("No user found with given Username");
-		}
-		
-		
+	public ResponseEntity<Optional<Users>> getUserByEmail(@RequestParam String email)
+			throws NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(usersService.findUserByEmail(email), HttpStatus.ACCEPTED);
+
 	}
-	
+
 	@GetMapping("/allUsers")
-	public ResponseEntity<List<Users>> getAllUsers()throws NoHandlerFoundException, Exception{
-		
-		if(us.findAll().isEmpty()) {
-			throw new UserException("No users found");
-		}
-		return new ResponseEntity<>(us.findAll(),HttpStatus.ACCEPTED );
+	public ResponseEntity<List<Users>> getAllUsers() throws NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(usersService.findAll(), HttpStatus.ACCEPTED);
 	}
-	
-	
-	
-	
-	
+
 }

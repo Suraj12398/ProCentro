@@ -9,6 +9,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class MyErrorDetails {
 	private LocalDateTime timestamp;
-    private String message;
-    private String details;
+	private String message;
+	private String details;
 }

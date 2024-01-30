@@ -17,69 +17,55 @@ import com.projectHub.Exceptions.TaskException;
 import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 import com.projectHub.model.Task;
-import com.projectHub.service.TaskService;
-import com.projectHub.service.UserService;
+import com.projectHub.service.TaskServiceInterface;
 
 @RestController
 public class TaskController {
 
 	@Autowired
-	TaskService ts;
-	
-	@Autowired
-	UserService us;
-	
-	
+	TaskServiceInterface taskService;
+
+
 	@PostMapping("/taskAssign")
-	public ResponseEntity<Task> assignTask(@RequestBody Task task) throws Exception{
-		
-		return new ResponseEntity<>(ts.assignTaskToTeamMember(task),HttpStatus.CREATED);
+	public ResponseEntity<Task> assignTask(@RequestBody Task task) throws Exception {
+
+		return new ResponseEntity<>(taskService.assignTaskToTeamMember(task), HttpStatus.CREATED);
 	}
-	
-	
-	
+
 	@GetMapping("/taskPriority")
-	public ResponseEntity<Task> updatePriority( @RequestParam Long taskId, @RequestParam Priority newPriority) throws TaskException, NoHandlerFoundException, Exception{
-		
-		return new ResponseEntity<>(ts.changeTaskPriority(taskId, newPriority),HttpStatus.ACCEPTED);
+	public ResponseEntity<Task> updatePriority(@RequestParam Long taskId, @RequestParam Priority newPriority)
+			throws TaskException, NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(taskService.changeTaskPriority(taskId, newPriority), HttpStatus.ACCEPTED);
 	}
-	
-	
-	
-	
+
 	@GetMapping("/taskStatus")
-	public ResponseEntity<Task> updateStatus( @RequestParam Long taskId, @RequestParam Status newStatus) throws TaskException, NoHandlerFoundException, Exception{
-		
-		
-		return new ResponseEntity<>(ts.changeTaskStatus(taskId, newStatus),HttpStatus.ACCEPTED);
+	public ResponseEntity<Task> updateStatus(@RequestParam Long taskId, @RequestParam Status newStatus)
+			throws TaskException, NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(taskService.changeTaskStatus(taskId, newStatus), HttpStatus.ACCEPTED);
 	}
-	
-	
-	
-	
+
 	@DeleteMapping("/taskDelete")
-	public ResponseEntity<String> deleteTask( @RequestParam Long taskId) throws TaskException, NoHandlerFoundException, Exception{
-					
-			
-			return new ResponseEntity<>(ts.deleteTask(taskId), HttpStatus.ACCEPTED);
-		
+	public ResponseEntity<String> deleteTask(@RequestParam Long taskId)
+			throws TaskException, NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(taskService.deleteTask(taskId), HttpStatus.ACCEPTED);
+
 	}
-	
-	
+
 	@GetMapping("/tasksByUser")
-	public ResponseEntity<List<Task>> getTaskDetails( @RequestParam Long userId) throws TaskException, NoHandlerFoundException, Exception{
-		
-		return new ResponseEntity<>(ts.getAllTask(userId), HttpStatus.ACCEPTED);
+	public ResponseEntity<List<Task>> getTaskDetails(@RequestParam Long userId)
+			throws TaskException, NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(taskService.getAllTask(userId), HttpStatus.ACCEPTED);
 	}
-	
-	
+
 	@GetMapping("/taskDetail")
-	public ResponseEntity<Task> getTaskDetail( @RequestParam Long taskId) throws TaskException, NoHandlerFoundException, Exception{
-		
-		return new ResponseEntity<>(ts.findTask(taskId), HttpStatus.ACCEPTED);
+	public ResponseEntity<Task> getTaskDetail(@RequestParam Long taskId)
+			throws TaskException, NoHandlerFoundException, Exception {
+
+		return new ResponseEntity<>(taskService.findTask(taskId), HttpStatus.ACCEPTED);
 	}
-	
-	
-	
-	
+
 }

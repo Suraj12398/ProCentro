@@ -17,24 +17,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "projects")
 public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank(message = "Must not be null value")
-    private String name;
-    private String description;
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotBlank(message = "Must not be null value")
+	private String name;
+	private String description;
 
-    private LocalDate startDate;
-    
-    
-    private LocalDate endDate;
+	private LocalDate startDate;
 
-   
-    @ManyToOne
-    private Users projectManager;
+	private LocalDate endDate;
 
-    
+	@ManyToOne
+	private Users projectManager;
 
-    
 }

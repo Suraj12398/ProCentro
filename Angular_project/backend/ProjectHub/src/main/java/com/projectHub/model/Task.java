@@ -21,23 +21,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "tasks")
 public class Task {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotBlank(message = "Must not be null value")
-    private String title;
-    private String description;
-    private Date dueDate;
-    private Priority priority;
-    private Status status;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotBlank(message = "Must not be null value")
+	private String title;
+	private String description;
+	private Date dueDate;
+	private Priority priority;
+	private Status status;
 
-    
-    @ManyToOne
-    private Project project;
-    
+	@ManyToOne
+	private Project project;
 
-    @ManyToOne
-    private Users assigned;
+	@ManyToOne
+	private Users assigned;
 
-    
 }

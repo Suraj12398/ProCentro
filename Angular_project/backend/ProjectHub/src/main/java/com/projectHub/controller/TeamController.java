@@ -13,45 +13,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projectHub.model.Team;
-import com.projectHub.service.TeamService;
+import com.projectHub.service.TeamServiceInterface;
 
 @RestController
 public class TeamController {
 
 	@Autowired
-	TeamService ts;
-	
+	TeamServiceInterface taskService;
+
 	@PostMapping("/createTeam")
-	public ResponseEntity<Team> createTeam(@RequestBody Team team){
-		
-		
-		return new ResponseEntity<>( ts.createTeam(team),HttpStatus.CREATED);
+	public ResponseEntity<Team> createTeam(@RequestBody Team team) {
+
+		return new ResponseEntity<>(taskService.createTeam(team), HttpStatus.CREATED);
 	}
-	
-	
-	
+
 	@PutMapping("/addMember")
-	public ResponseEntity<Team> addNewMemberInTeam(@RequestParam Long teamId, @RequestParam Long memberId){
-		
-		return new ResponseEntity<>(ts.addMemberToTeam(teamId, memberId) ,HttpStatus.CREATED);
-		
+	public ResponseEntity<Team> addNewMemberInTeam(@RequestParam Long teamId, @RequestParam Long memberId) {
+
+		return new ResponseEntity<>(taskService.addMemberToTeam(teamId, memberId), HttpStatus.CREATED);
+
 	}
-	
-	
-	
+
 	@GetMapping("/teamDetail")
-	public ResponseEntity<Team> getDetails(@RequestParam Long teamId){
-		
-		return new ResponseEntity<>(ts.teamDetails(teamId).get(),HttpStatus.CREATED);
-		
+	public ResponseEntity<Team> getDetails(@RequestParam Long teamId) {
+
+		return new ResponseEntity<>(taskService.teamDetails(teamId).get(), HttpStatus.CREATED);
+
 	}
-	
+
 	@GetMapping("/teamList")
-	public ResponseEntity<List<Team>> getListManager(@RequestParam Long id){
-		
-		return new ResponseEntity<>(ts.getAllTeamsOfManager(id),HttpStatus.CREATED);
+	public ResponseEntity<List<Team>> getListManager(@RequestParam Long id) {
+
+		return new ResponseEntity<>(taskService.getAllTeamsOfManager(id), HttpStatus.CREATED);
 	}
-	
-	
-	
+
 }

@@ -13,8 +13,8 @@ import com.projectHub.model.Team;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-	 List<Team> findByMembersId(Long memberId);
-	 
-	 @Query("SELECT DISTINCT t.teamProject FROM Team t JOIN t.members m WHERE m.id = :userId")
-	    List<Project> findProjectsByMemberId(@Param("userId") Long userId);
+	List<Team> findByMembersId(Long memberId);
+
+	@Query("SELECT DISTINCT t.teamProject FROM Team t JOIN t.members m WHERE m.id = :userId")
+	List<Project> findProjectsByMemberId(@Param("userId") Long userId);
 }
