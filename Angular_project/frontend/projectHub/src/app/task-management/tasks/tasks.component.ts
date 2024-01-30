@@ -24,6 +24,9 @@ export class TasksComponent implements OnInit {
     const projectId = this.route.snapshot.paramMap.get('id');
     const userJson = localStorage.getItem('user');
     this.user = userJson ? JSON.parse(userJson) : null;
+    // console.log(this.user.id)
+    
+
 
   this.taskService.getTasksForUser(this.user.id).subscribe(
     (taskData: any[]) => {

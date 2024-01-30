@@ -12,7 +12,6 @@ import com.projectHub.enums.Priority;
 import com.projectHub.enums.Status;
 import com.projectHub.model.Task;
 import com.projectHub.repository.TaskRepository;
-import com.projectHub.repository.UsersRepository;
 
 @Service
 public class TaskService implements TaskServiceInterface {
@@ -20,13 +19,9 @@ public class TaskService implements TaskServiceInterface {
 	@Autowired
 	private TaskRepository taskRepository;
 
-	@Autowired
-	private UsersRepository usersRepository;
 
 	@Override
 	public Task assignTaskToTeamMember(Task task) throws Exception {
-		task.getAssigned().getNotifications().add("You have Assinged Task : " + task.getTitle());
-		usersRepository.save(task.getAssigned());
 
 		return taskRepository.save(task);
 
@@ -55,8 +50,7 @@ public class TaskService implements TaskServiceInterface {
 
 	@Override
 	public Task getTaskDetails(Long taskId) throws TaskException, Exception, NoHandlerFoundException {
-		Task task = taskRepository.findById(taskId)
-				.orElseThrow(() -> new TaskException("No task found with giver id"));
+		Task task = taskRepository.findById(taskId).orElseThrow(() -> new TaskException("No task found with giver id"));
 
 		return task;
 
@@ -65,9 +59,7 @@ public class TaskService implements TaskServiceInterface {
 	@Override
 	public List<Task> getAllTask(Long userId) throws TaskException, Exception, NoHandlerFoundException {
 
-		List<Task> taskList = taskRepository.findAll()
-				.stream()
-				.filter(a -> a.getAssigned().getId() == userId).toList();
+		List<Task> taskList = taskRepository.findAll().stream().filter(a -> a.getAssigned().getId() == userId).toList();
 
 		if (taskList.isEmpty())
 			throw new TaskException("No task found with user");

@@ -23,10 +23,6 @@ public class TeamService implements TeamServiceInterface {
 	@Override
 	public Team createTeam(Team team) {
 		team.getMembers().add(team.getTeamProject().getProjectManager());
-		team.getMembers().stream()
-				.map(a -> a.getNotifications().add("You have been Added in the Team : " + team.getName()));
-		userRepository.saveAll(team.getMembers());
-
 		return teamRepository.save(team);
 
 	}
@@ -37,8 +33,6 @@ public class TeamService implements TeamServiceInterface {
 		Team team = teamRepository.findById(teamId).get();
 		Users newMember = userRepository.findById(memberId).get();
 		team.getMembers().add(newMember);
-		newMember.getNotifications().add("You have been added in : " + team.getName());
-		userRepository.save(newMember);
 
 		return teamRepository.save(team);
 	}
